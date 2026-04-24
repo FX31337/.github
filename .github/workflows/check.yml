@@ -12,14 +12,14 @@ on:
       actionlint-matcher-path:
         description: >
           Path to actionlint problem matcher JSON file. If not specified,
-          uses the default from EA31337/.github repository.
+          uses the default from FX31337/.github repository.
         required: false
         type: string
         default: ''
       pre-commit-matcher-path:
         description: >
           Path to pre-commit problem matcher JSON file. If not specified,
-          uses the default from EA31337/.github repository.
+          uses the default from FX31337/.github repository.
         required: false
         type: string
         default: ''
@@ -60,7 +60,7 @@ jobs:
         if: github.event_name == 'workflow_call' && inputs.actionlint-matcher-path == ''
         uses: actions/checkout@v4
         with:
-          repository: EA31337/.github
+          repository: FX31337/.github
           path: .github-matchers
           sparse-checkout: |
             .github/actionlint-matcher.json
@@ -122,7 +122,7 @@ jobs:
         if: github.event_name == 'workflow_call' && inputs.pre-commit-matcher-path == ''
         uses: actions/checkout@v4
         with:
-          repository: EA31337/.github
+          repository: FX31337/.github
           path: .github-matchers
           sparse-checkout: |
             .github/pre-commit-matcher.json
