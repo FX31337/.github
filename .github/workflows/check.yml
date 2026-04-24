@@ -12,14 +12,14 @@ on:
       actionlint-matcher-path:
         description: >
           Path to actionlint problem matcher JSON file. If not specified,
-          uses the default from FX31337/.github repository.
+          uses the default from EA31337/.github repository.
         required: false
         type: string
         default: ''
       pre-commit-matcher-path:
         description: >
           Path to pre-commit problem matcher JSON file. If not specified,
-          uses the default from FX31337/.github repository.
+          uses the default from EA31337/.github repository.
         required: false
         type: string
         default: ''
@@ -50,7 +50,7 @@ jobs:
     permissions:
       contents: read
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           # For workflow_run, checkout the head branch from the triggering workflow
           ref: ${{ github.event.workflow_run.head_branch || github.ref }}
@@ -60,7 +60,7 @@ jobs:
         if: github.event_name == 'workflow_call' && inputs.actionlint-matcher-path == ''
         uses: actions/checkout@v4
         with:
-          repository: FX31337/.github
+          repository: EA31337/.github
           path: .github-matchers
           sparse-checkout: |
             .github/actionlint-matcher.json
@@ -90,12 +90,12 @@ jobs:
     permissions:
       contents: read
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           ref: ${{ github.event.workflow_run.head_branch || github.ref }}
           submodules: ${{ inputs.submodules || 'false' }}
       - name: Restore lychee cache
-        uses: actions/cache@v4
+        uses: actions/cache@v5.0.1
         with:
           key: cache-lychee-${{ github.sha }}
           path: .lycheecache
@@ -104,9 +104,8 @@ jobs:
       - name: Link Checker
         uses: lycheeverse/lychee-action@v2
         with:
-          args: --cache --max-cache-age 1d --verbose --no-progress './**/*.md' '.github/**/*.md'
+          args: --cache --max-cache-age 1d --verbose --no-progress './**/*.md'
           fail: true
-          failIfEmpty: false
   pre-commit:
     name: Pre-commit
     if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
@@ -114,7 +113,7 @@ jobs:
     permissions:
       contents: read
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           ref: ${{ github.event.workflow_run.head_branch || github.ref }}
           submodules: ${{ inputs.submodules || 'false' }}
@@ -123,18 +122,18 @@ jobs:
         if: github.event_name == 'workflow_call' && inputs.pre-commit-matcher-path == ''
         uses: actions/checkout@v4
         with:
-          repository: FX31337/.github
+          repository: EA31337/.github
           path: .github-matchers
           sparse-checkout: |
             .github/pre-commit-matcher.json
           sparse-checkout-cone-mode: false
-      - uses: actions/cache@v4
+      - uses: actions/cache@v5.0.1
         with:
           path: ~/.cache/pre-commit
           key: pre-commit|${{ hashFiles('.pre-commit-config.yaml') }}
           restore-keys: |
             pre-commit|
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v6.1.0
         with:
           python-version: '3.12'
       - name: Add Problem Matcher for pre-commit
