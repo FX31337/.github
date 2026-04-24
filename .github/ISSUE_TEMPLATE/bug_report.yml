@@ -1,0 +1,38 @@
+---
+name: 🐛 Bug report
+description: Report a bug or regression
+title: '[BUG]: '
+labels:
+  - bug
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to fill out this bug report 🤗
+        Please check for existing open or closed issues before submitting.
+  - type: textarea
+    id: bug-description
+    attributes:
+      label: Description
+      description: Describe what happened and what you expected to happen.
+    validations:
+      required: true
+  - type: textarea
+    id: steps-to-reproduce
+    attributes:
+      label: Steps to reproduce
+      description: List the steps needed to reproduce the behavior.
+      placeholder: |
+        1. Go to '...'
+        2. Click on '...'
+        3. Scroll down to '...'
+        4. See error
+    validations:
+      required: true
+  - type: textarea
+    id: additional-information
+    attributes:
+      label: Additional information
+      description: |-
+        Provide any additional context such as logs, screenshots, links, or scenarios
+        that can help reproduce and resolve the issue.

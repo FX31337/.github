@@ -1,0 +1,26 @@
+---
+name: ✨ Feature request
+description: Request a feature or enhancement
+labels:
+  - enhancement
+title: '[FEAT]: '
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Please check for existing open or closed issues before submitting this
+        feature request.
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: Describe the feature or enhancement you would like to see.
+    validations:
+      required: true
+  - type: textarea
+    id: additional-information
+    attributes:
+      label: Additional information
+      description: |-
+        Share any additional context, proposed solutions, links, or screenshots
+        that can help us evaluate the request.
