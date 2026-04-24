@@ -71,6 +71,14 @@ It triggers on issue and pull request comments, as well as `workflow_dispatch`. 
 
 *Note: Requires `OPENCODE_API_KEY` secret to be set in repository settings.*
 
+### Copilot Setup Steps Workflow
+
+The `copilot-setup-steps.yml` workflow automates the installation and caching of Python
+dependencies required for the development environment and GitHub Copilot agents.
+
+It reads from `.devcontainer/requirements.txt`, caching the Python user site (`~/.local`) to
+speed up subsequent runs, and ensures local binaries are added to the GitHub Actions `PATH`.
+
 ### Development Containers (CI) Workflow
 
 The `devcontainer-ci.yml` workflow automates the building and testing of Development Containers.
