@@ -14,6 +14,14 @@ Automated checks for code quality and documentation consistency.
   - `link-checker`: Checks for broken links in Markdown files using [lychee](https://github.com/lycheeverse/lychee).
   - `pre-commit`: Runs various hooks defined in `.pre-commit-config.yaml`.
 
+### [Development Containers (CI)](devcontainer-ci.yml)
+
+Builds and tests the project's development container.
+
+- **Trigger:** `push` and `pull_request` on `.devcontainer/**` paths, weekly `schedule`, and `workflow_call`.
+- **Jobs:**
+  - `devcontainer-build`: Builds the container image and runs verification tests.
+
 ### [Cogni AI Agent](cogni-ai-agent.yml)
 
 Integration with the [Cogni AI Agent](https://github.com/Cogni-AI-OU/cogni-ai-agent-action)
